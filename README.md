@@ -1,1 +1,3 @@
-# Guess_Letter_-tk-
+## Guess_Letter_-tk-
+
+Run guess_letter.py
