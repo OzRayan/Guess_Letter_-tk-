@@ -3,9 +3,9 @@ import setup as st
 import record as rc
 
 from time import strftime, sleep
-from tkinter import Tk, Label, Button, Frame, StringVar, IntVar
-from tkinter import DISABLED, NORMAL, SUNKEN, SOLID
-from tkinter import RIGHT, LEFT, TOP, BOTTOM, BOTH, CENTER
+from tkinter import (Tk, Label, Button, Frame, StringVar, IntVar,
+                     DISABLED, NORMAL, SUNKEN, SOLID,
+                     RIGHT, LEFT, TOP, BOTTOM, BOTH, CENTER)
 
 
 class Hangman:
@@ -493,7 +493,7 @@ class Hangman:
         self.total += n
 
         self.score_text.set(
-            f"'{new}'" + (len(total) + 4 + len(str(t)) - 1) * ' ' + f'{n}\n'
+            f'{new}' + (len(total) + 4 + len(str(t)) - 1) * ' ' + f'{n}\n'
             f'{total}' + 6 * ' ' + f'{self.total}'
         )
 
