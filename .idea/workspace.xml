@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ef33a39-a0d0-4985-a99c-f6ec5ce6c2bb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Guess_Letter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Guess_Letter.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_letter.py" beforeDir="false" afterPath="$PROJECT_DIR$/guess_letter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/record.py" beforeDir="false" afterPath="$PROJECT_DIR$/record.py" afterDir="false" />
-    </list>
+    <list default="true" id="9ef33a39-a0d0-4985-a99c-f6ec5ce6c2bb" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -186,7 +180,7 @@
       <window_info content_ui="combo" id="Project" order="0" weight="0.249499" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50065106" side_tool="true" weight="0.3292517" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32853717" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32853717" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
