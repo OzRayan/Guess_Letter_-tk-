@@ -51,7 +51,7 @@ class Hangman:
 
         self.sorted = ''
         self.char = ''
-        self.lang = 'FRA'
+        # self.lang = 'FRA'
         self.level_status = 1
         self.total = 0
         self.abc = []
@@ -333,7 +333,7 @@ class Hangman:
         points = Label(
             self.row_0_column_1, text='Points:',
             bg=bg, fg=fg,
-            font=st.font(self.rem, -2, style='normal'),
+            font=st.font(self.rem, -4, style='normal'),
             bd=0,
             width=2
         )
@@ -605,9 +605,9 @@ class Hangman:
                           command=lambda: self.score_screen())
         self.score.grid(row=5, column=0, sticky='news')
         # noinspection PyAttributeOutsideInit
-        self.choose = self.create_button(self.row_0_grid, 'english')
-        self.choose.config(font=st.font(self.rem, 1))
-        self.choose.place(relx=0.67, rely=0.23, x=0, y=0, anchor='se')
+        # self.choose = self.create_button(self.row_0_grid, 'english')
+        # self.choose.config(font=st.font(self.rem, 1))
+        # self.choose.place(relx=0.67, rely=0.23, x=0, y=0, anchor='se')
         # noinspection PyAttributeOutsideInit
         self.info = self.create_button(self.welcome, 'info')
         self.info.config(font=st.font(self.rem, 0),
@@ -656,7 +656,7 @@ class Hangman:
         # noinspection PyBroadException
         try:
             self.master.destroy()
-            self.master_2.destroy()
+            # self.master_2.destroy()
         except NotImplementedError:
             pass
 
@@ -698,10 +698,10 @@ class Hangman:
         sleep(0.4)
         self.welcome.pack(fill=BOTH, expand=True)
         # noinspection PyBroadException
-        try:
-            self.master_2.destroy()
-        except NotImplementedError:
-            pass
+        # try:
+        #     self.master_2.destroy()
+        # except NotImplementedError:
+        #     pass
         self.level[0].config(state=NORMAL)
         self.level[1].config(state=NORMAL)
         self.level[2].config(state=DISABLED)
@@ -720,11 +720,9 @@ class Hangman:
         else:
             search_query = search.lower()
         try:
-            word = st.open_csv(search_query, self.lang,
-                               self.level_status).upper()
+            word = st.open_csv(search_query, self.level_status).upper()
             if word in self.s_w_list:
-                word = st.open_csv(search_query, self.lang,
-                                   self.level_status).upper()
+                word = st.open_csv(search_query, self.level_status).upper()
             self.secret_word.set(word)
             for x in word:
                 if x == word[0] or x == word[len(word) - 1]:
@@ -751,20 +749,20 @@ class Hangman:
             command = self.destroy_all
         elif text == 'ENTER':
             command = self.set_welcome
-        elif text == 'english':
-            command = self.set_language
+        # elif text == 'english':
+        #     command = self.set_language
         elif text == 'Back':
             command = self.set_back
         return command
 
-    def set_language(self):
-        """Method for change the categories between english and french"""
-        if self.choose.cget('text').lower() == 'english':
-            self.choose.config(text='Francais')
-            self.lang = 'ENG'
-        elif self.choose.cget('text').lower() == 'francais':
-            self.choose.config(text='English')
-            self.lang = 'FRA'
+    # def set_language(self):
+    #     """Method for change the categories between english and french"""
+    #     if self.choose.cget('text').lower() == 'english':
+    #         self.choose.config(text='Francais')
+    #         self.lang = 'ENG'
+    #     elif self.choose.cget('text').lower() == 'francais':
+    #         self.choose.config(text='English')
+    #         self.lang = 'FRA'
 
     def start_stop_action(self, text):
         """Start and stop buttons common actions"""
@@ -793,7 +791,7 @@ class Hangman:
             self.banner_text.set('')
             self.clock_text.set('Clock')
             self.running = False
-            self.choose.place(relx=0.67, rely=0.23, x=0, y=0, anchor='se')
+            # self.choose.place(relx=0.67, rely=0.23, x=0, y=0, anchor='se')
             r = 0
             for x in range(3):
                 self.level[x].grid(row=r, column=0, sticky='news', pady=3)
@@ -836,12 +834,13 @@ class Hangman:
         self.quit.config(state=DISABLED)
         self.back.config(state=DISABLED)
         self.start_stop_action('start')
-        self.choose.place_forget()
+        # self.choose.place_forget()
         # noinspection PyBroadException
-        try:
-            self.master_2.destroy()
-        except NotImplementedError:
-            pass
+        # try:
+        #     if self.master_2:
+        #         self.master_2.destroy()
+        # except NotImplementedError:
+        #     pass
 
     def set_stop_button(self):
         """Sets stop button action"""

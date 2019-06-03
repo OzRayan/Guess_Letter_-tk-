@@ -13,13 +13,14 @@ def image(var):
     return photo
 
 
-def open_csv(search_query, item, level):
+# TODO: Change to English words only, take out 'item'
+def open_csv(search_query, level):
     """Open the selected csv file and returns a random word"""
     from random import choice
     from csv import reader
     # from csv import DictReader, DictWriter, reader, writer
     try:
-        with open('{}/{}.csv'.format(item, search_query), 'r') as file:
+        with open('WORDS/{}.csv'.format(search_query), 'r') as file:
             animals = reader(file)
             words = []
             for item in animals:
@@ -44,11 +45,14 @@ def open_csv(search_query, item, level):
             #         if 7 <= len(line[0]) <= 18 and line[0] not in writatle:
             #             writer_file.writerow(line)
             #             writatle.append(line[0])
-            word = choice(words)
-            file.close()
+            if len(words) != 0:
+                word = choice(words)
+            else:
+                word = open_csv(choice(C_EN), 2)
+            # file.close()
         return word
-    except Exception:
-        pass
+    except FileNotFoundError as err:
+        print(err)
 
 
 # open_csv('convert', 'ENG')
