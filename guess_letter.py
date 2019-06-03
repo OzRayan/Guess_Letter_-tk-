@@ -493,7 +493,7 @@ class Hangman:
         self.total += n
 
         self.score_text.set(
-            f"'{new}'" + (len(total) + 4 + len(str(t)) - 1) * ' ' + f'{n}\n'
+            f'{new}' + (len(total) + 4 + len(str(t)) - 1) * ' ' + f'{n}\n'
             f'{total}' + 6 * ' ' + f'{self.total}'
         )
 
