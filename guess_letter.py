@@ -3,9 +3,9 @@ import setup as st
 import record as rc
 
 from time import strftime, sleep
-from tkinter import Tk, Label, Button, Frame, StringVar, IntVar
-from tkinter import DISABLED, NORMAL, SUNKEN, SOLID
-from tkinter import RIGHT, LEFT, TOP, BOTTOM, BOTH, CENTER
+from tkinter import (Tk, Label, Button, Frame, StringVar, IntVar,
+                     DISABLED, NORMAL, SUNKEN, SOLID,
+                     RIGHT, LEFT, TOP, BOTTOM, BOTH, CENTER)
 
 
 class Hangman:
@@ -657,7 +657,7 @@ class Hangman:
         try:
             self.master.destroy()
             self.master_2.destroy()
-        except:
+        except NotImplementedError:
             pass
 
     def set_abc(self, item):
@@ -700,7 +700,7 @@ class Hangman:
         # noinspection PyBroadException
         try:
             self.master_2.destroy()
-        except:
+        except NotImplementedError:
             pass
         self.level[0].config(state=NORMAL)
         self.level[1].config(state=NORMAL)
@@ -737,7 +737,7 @@ class Hangman:
                 self.sorted = st.sort(word, True)
             self.draw_word()
             self.banner_text.set(search_query.capitalize())
-        except Exception:
+        except NotImplementedError:
             pass
 
     def set_command(self, text):
@@ -828,6 +828,7 @@ class Hangman:
 
     def set_start_button(self):
         """Sets start button action"""
+        print("This is working")
         self.time_left.set(st.DEFAULT_GAP)
         self.running = True
         self.counter.set('7')
@@ -839,7 +840,7 @@ class Hangman:
         # noinspection PyBroadException
         try:
             self.master_2.destroy()
-        except:
+        except NotImplementedError:
             pass
 
     def set_stop_button(self):
