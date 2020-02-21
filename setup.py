@@ -31,7 +31,9 @@ def open_csv(search_query, level):
                     words.append(item[0].lower())
                 elif level == 3 and len(item[0]) >= 13:
                     words.append(item[0].lower())
-            #     print(item[0])
+
+            # WRITING ON THE CSV FILE
+
             # print([item for item in items])
             # with open('ENG/all.csv', 'w', newline='\n') as wr:
             #     # fields = ['animal', 'plant', 'object', 'geography',
@@ -45,6 +47,8 @@ def open_csv(search_query, level):
             #         if 7 <= len(line[0]) <= 18 and line[0] not in writatle:
             #             writer_file.writerow(line)
             #             writatle.append(line[0])
+
+
             if len(words) != 0:
                 word = choice(words)
             else:

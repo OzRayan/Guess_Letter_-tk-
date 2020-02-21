@@ -13,11 +13,14 @@ class Hangman:
     made in tkinter GUInterface"""
     def __init__(self, master=None):
         """Constructor"""
+
+        # Screens init
         self.master = master
         self.screen()
         self.build_frame()
         self.build_grid()
 
+        # All displayed labels
         self.banner_text = StringVar()
         self.banner_text.set('')
         self.banner_text.trace('w', self.build_title_label)
@@ -49,9 +52,9 @@ class Hangman:
         self.score_text.set('0\n0')
         self.score_text.trace('w', self.build_score_label)
 
+        # Predefined variables
         self.sorted = ''
         self.char = ''
-        # self.lang = 'FRA'
         self.level_status = 1
         self.total = 0
         self.abc = []
@@ -67,6 +70,7 @@ class Hangman:
         self.w = self.master.winfo_screenwidth() / 5
         self.h = self.master.winfo_screenheight() * 2 / 7
 
+        # Methods call in __init__()
         self.build_title_label()
         self.build_word_label()
         self.build_countdown()
@@ -79,6 +83,7 @@ class Hangman:
         self.category_buttons()
         self.abc_buttons()
 
+        # Update time
         self.update()
 
     def screen(self):
@@ -122,7 +127,7 @@ class Hangman:
         if self.rem < 1440:
             x, y = 400, 500
         else:
-            x, y = 700, 900
+            x, y = 700, 700
         self.master_2.geometry(
             '{}x{}+{}+{}'.
             format(x, y,
@@ -173,9 +178,9 @@ class Hangman:
                            highlightcolor=st.color['fg_enter'],
                            highlightthickness=3)
         if self.rem < 1440:
-            x, y = 600, 500
+            x, y = 450, 500
         else:
-            x, y = 600, 800
+            x, y = 600, 700
         self.master_3.geometry(
             '{}x{}+{}+{}'.
             format(x, y,
@@ -449,6 +454,8 @@ class Hangman:
         """Drawing loop for the secret word label"""
         output = []
         index = 1
+
+        # Draws the displayed word after each letter choice
         for x in self.secret_word.get():
             if self.level_status == 1:
                 if x in self.first_last \
@@ -467,6 +474,8 @@ class Hangman:
                     output.append(self.char)
                 else:
                     output.append('_')
+
+        # Finally sets the label for display
         self.word_text.set(' '.join(output))
 
     def scoring(self):
@@ -476,6 +485,10 @@ class Hangman:
         xp = 7 - len(self.misses)
         n = 0
         t = 0
+
+        # Scoring points are defined by the input letter
+        # if vowels score are lower in each difficulty level
+        # if console, score are higher in each difficulty level
         if self.char in self.secret_word.get() and self.char in 'AEIOU':
             if self.level_status == 1:
                 n = 4 * xp
@@ -492,6 +505,7 @@ class Hangman:
                 n = 8 * xp
         self.total += n
 
+        # Finally sets up the scoring window
         self.score_text.set(
             f'{new}' + (len(total) + 4 + len(str(t)) - 1) * ' ' + f'{n}\n'
             f'{total}' + 6 * ' ' + f'{self.total}'
@@ -512,12 +526,17 @@ class Hangman:
             self.timer_text.set(strftime("%H:%M"))
 
         if sorted(self.guesses) == sorted(self.sorted):
+            # Add a score entry to database if entries are less than 13
             if len(rc.search()) < 13:
                 rc.add_entry(self.level_status, self.total)
+
+            # Checks if last score in database is less than new score
+            # if is than delete the last entry and the new higher score
             elif len(rc.search()) == 13 \
-                    and rc.search()[13].points < self.total:
+                    and rc.search()[12].points < self.total:
                 rc.delete()
                 rc.add_entry(self.level_status, self.total)
+
             self.mini_screen()
             self.word_text.set('Choose your category')
             self.counter.set('')
@@ -604,10 +623,6 @@ class Hangman:
                           overrelief=None, relief=SOLID, bd=0,
                           command=lambda: self.score_screen())
         self.score.grid(row=5, column=0, sticky='news')
-        # noinspection PyAttributeOutsideInit
-        # self.choose = self.create_button(self.row_0_grid, 'english')
-        # self.choose.config(font=st.font(self.rem, 1))
-        # self.choose.place(relx=0.67, rely=0.23, x=0, y=0, anchor='se')
         # noinspection PyAttributeOutsideInit
         self.info = self.create_button(self.welcome, 'info')
         self.info.config(font=st.font(self.rem, 0),
@@ -714,11 +729,14 @@ class Hangman:
         self.char = ''
         search = self.prompt.get()
         lang = st.C_EN
+
         if search.lower() == 'random':
             from random import choice
             search_query = choice(lang)
         else:
             search_query = search.lower()
+
+        # Opens available words from csv file
         try:
             word = st.open_csv(search_query, self.level_status).upper()
             if word in self.s_w_list:
